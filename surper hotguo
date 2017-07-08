@@ -1,0 +1,27 @@
+#include<stdio.h>
+#define k3 10000
+#define k2 10000
+int main()
+{
+	int a,b,c,i,j,e,g,f,h,m,n,s[k3],k[k2];
+	scanf("%d",&a);
+	for(i=1;i<=a;i++)
+	{
+	scanf("%d",&b);        //确定数组有多少个数 
+	for(j=0,m=0;j<b;j++,m++)
+	scanf("%d",&s[m]);    //给数组赋值 
+	for(e=0;e<b;e++)
+	for(f=1,g=0,n=0;f<=b;f++,g++,n++)
+	k[g]=s[e]+s[n];
+	for(g=0;g<b;g++)
+		{
+		if(k[g]>k[g+1])
+		h=k[g];
+		k[g+1]=h;    
+		k[g]=k[g+1];
+		}
+		printf("\n%d",k[g]);
+		k[0]=0;
+		s[0]=0;               
+	}
+}
