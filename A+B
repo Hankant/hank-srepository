@@ -1,0 +1,115 @@
+#include<stdio.h>  
+#include<string.h>  
+    char a[1000],b[1000],c[1000];  
+    int i,j,i1,j1,stra,strb,a1[1000],b1[1000],a2[1000],b2[1000],a3[1000],a4[1000],str1,str2,k,flag1,str22;  
+xiaoshu()  
+{  
+    if(a4[str1]==0)  
+    {  
+        printf("\n");  
+    }  
+    else  
+    {  
+        printf(".");  
+        for(i=1;i<=str1;i++)  
+        {  
+            printf("%d",a4[i]);  
+        }  
+        printf("\n");  
+    }  
+}  
+int main()  
+{  
+  
+      
+      
+    gets(a);  
+    gets(b);  
+    stra=strlen(a);  
+    strb=strlen(b);  
+    for(i1=0;i1< stra&&a[i1]!='.';i1++);  
+    for(j1=0;j1< strb&&b[j1]!='.';j1++);  
+      
+    for( j = i1 - 1, k = 0; j > -1; j --, k ++ )    
+        a1[ k ] = a[ j ] - '0';    
+    for( j = j1 - 1, k = 0; j > -1; j --, k ++ )    
+        b1[ k ] = b[ j ] - '0';    
+    for( j = i1 + 1, k = 1; j < stra; j ++, k ++ )    
+        a2[ k ] = a[ j ] - '0';    
+    for( j = j1 + 1, k = 1; j < strb; j ++, k ++ )    
+        b2[ k ] = b[ j ] - '0';    
+      
+    if( stra-i1-1>strb-j1-1 )    
+    str1= stra-i1-1;    
+    else str1=strb-j1-1;    
+    if(stra-i1-1>0||strb-j1-1>0)   
+    {  
+        for( i = str1; i > 0; i -- )    
+        {    
+            a4[ i ]+= a2[ i ] + b2[ i ];    
+            if( a4[ i ] >= 10 )    
+            {    
+                a4[ i - 1 ] ++;    
+                a4[ i ] %= 10;    
+            }    
+        }    
+        if( a4[ 0 ] > 0 )    
+            a3[ 0 ] ++ ;    
+    }  
+    else  
+    flag1=1;//代表着小数部分不存在   
+      
+    //整数部分相加   
+    if(i1<j1)  
+    str2=j1;  
+    else  
+    str2=i1;  
+    str22=str2;  
+    for(i=0;i<str2;i++)  
+    {  
+        a3[ i ] += a1[ i ] + b1[ i ];    
+        if( a3[ i ] >= 10 )    
+        {    
+            a3[ i + 1 ] ++;    
+            a3[ i ] %= 10;    
+            if(i+1==str2)  
+            str22=str2+1;  
+        }  
+    }  
+      
+    //开始排除特殊情况  
+    for(i=str22-1;i>-1;i--)  
+    {  
+        if(a3[i]==0)        //第一种，整数部分第一位是0  
+         {  
+            str22--;  
+         }  
+         else  
+         break;  
+    }  
+    for(i=str1;i>0;i--)//小数部分最后一位是0   
+    {  
+        if(a4[i]==0)  
+        {  
+            if(str1>1)  
+            str1--;  
+        }  
+        else  
+        break;  
+    }  
+    //输出部分  
+    if(a3[str22-1]==0)  
+    {  
+        printf("0");  
+        xiaoshu();  
+    }  
+    else  
+    {  
+        for(i=str22-1;i>-1;i--)  
+        {  
+            printf("%d",a3[i]);  
+        }  
+        xiaoshu();  
+    }  
+      
+}
